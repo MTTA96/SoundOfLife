@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
    
+@section('content') 
    <head>
       <title>Laravel</title>
       <link href = "https://fonts.googleapis.com/css?family=Lato:100" rel = "stylesheet" 
@@ -35,12 +35,9 @@
    
    <body>
       <div class = "container">
-         
          <div class = "content">
             <div class = "title">Laravel 5</div>
          </div>
-			
       </div>
    </body>
-
-</html>
+@endsection
