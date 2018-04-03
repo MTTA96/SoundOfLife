@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
 // Second Route method – Root URL with ID will match this method
 Route::get('ID/{id}',function($id){
      echo 'ID: '.$id;
@@ -28,8 +27,7 @@ Route::get('ID/{id}',function($id){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-=======
+
 Route::get('/music', function(){
     return view('music');
  });
->>>>>>> a4fc52e8901f9d31f5424c285fc8a3b20f291ed4
