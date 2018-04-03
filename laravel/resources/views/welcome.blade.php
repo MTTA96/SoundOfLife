@@ -39,7 +39,12 @@
          <div class = "content">
             <div class = "title">Laravel 5</div>
          </div>
-			
+        <li>
+            <a href = "song_list">Song list</a>
+        </li>
+        <li>
+            <a href="insert">Add new song</a>
+        </li>
       </div>
    </body>
 

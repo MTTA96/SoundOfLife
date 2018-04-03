@@ -18,3 +18,18 @@ Route::get('/', function () {
 Route::get('/music', function(){
     return view('music');
  });
+
+// View songs
+Route::get('song_list','SongListController@index');
+
+// Insert song
+Route::get('insert','SongInsertController@insertform');
+Route::post('create','SongInsertController@insert');
+
+//Update song
+Route::get('edit-song','SongListController@index');
+Route::get('edit/{id}','SongUpdateController@show');
+Route::post('edit/{id}','SongUpdateController@edit');
+
+//Delete song
+Route::get('delete/{id}','SongListController@destroy');
