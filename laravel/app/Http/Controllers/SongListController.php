@@ -20,6 +20,11 @@ class SongListController extends Controller
     public function index(lain $lain)
     {
         $songs = DB::select('select * from song');
+        return view('welcome',['songs'=>$songs]);
+    }
+
+    public function manageSongs(lain $lain) {
+        $songs = DB::select('select * from song');
         return view('song_list',['songs'=>$songs]);
     }
 

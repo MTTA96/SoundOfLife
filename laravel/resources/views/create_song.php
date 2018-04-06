@@ -84,21 +84,29 @@
                         <td><input type='text' name='txtDescr' /></td>
                         </tr>
 
-						<!-- Mp3 file -->
-
-
+						<!-- Mp3 file --> 
+                       <tr>
+							<td>Select song to upload:</td>
+								<td>                      
+									<?php
+                                   		echo Form::open(array('url' => '/uploadfile','files'=>'true'));
+										echo Form::file('song');
+									?>
+							</td>
+                        </tr>
+						
                         <!-- Song img -->
                         <tr>
                             <td>Select image to upload:</td>
                             <td>                      
                                 <?php
-                                    echo Form::open(array('url' => '/uploadfile','files'=>'true'));
                                     echo Form::file('image');
-                                    echo Form::close();
+									echo Form::close();
                                 ?>
                             </td>
                         </tr>
 
+						<!-- Button create -->
                         <tr>
                         <td colspan = '2'>
                             <input type = 'submit' value = "Add song"/>
@@ -106,7 +114,10 @@
                         </tr>
                     </table>
 
-                        
+					<!-- Back to home -->
+                    <li>
+                        <a href = "/">Home</a>
+                    </li>
                         
                 </form>
    

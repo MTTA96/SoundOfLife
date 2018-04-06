@@ -11,16 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'SongListController@index');
 
 Route::get('/music', function(){
     return view('music');
  });
 
 // View songs
-Route::get('song_list','SongListController@index');
+Route::get('song_list','SongListController@manageSongs');
 
 // Insert song
 Route::get('insert','SongInsertController@insertform');
