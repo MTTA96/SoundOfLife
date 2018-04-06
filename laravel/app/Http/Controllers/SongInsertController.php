@@ -43,27 +43,42 @@ class SongInsertController extends Controller
 	
 
         // $this->validate($request, [
-        //     'songIMG' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     'mp3' => 'required|mp3|mimes:mp3|max:2048',
         // ]);
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/uploads');
-            $image->move($destinationPath, $name);
+            // $image = $request->file('image');
+            // $name = time().'.'.$image->getClientOriginalExtension();
+            // $destinationPath = public_path('/uploads');
+            // $image->move($destinationPath, $name);
+            // $songIMGLINK = "uploads/".$file->getClientOriginalName();
 
-            $songIMGLINK = "uploads/".$file->getClientOriginalName();
-  
-        
+            // $songIMGLINK = $request->file('image')->store('public');
+
+            $file = $request->file('image');
+            $name = time().$file->getClientOriginalExtension();
+            $file->move('storage', $name);
+            $songIMGLINK = time().$file->getClientOriginalExtension();
 
             DB::insert('INSERT INTO Song (SONG_TITLE , ARTIST, SONG_IMGL_INK, SONG_LINK, TAGS, LIKES, DISLIKES, DESCR, UPLOADER, UPLOAD_DATE) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [$songTitle, $artist, $songIMGLINK, $songlink, $tags, $likes, $dislikes, $descr, $uploader, $uploadDate]);
     
+
+
             echo "Record inserted successfully.<br/>";
             echo '<a href = "/song_list">Click Here</a> to go back.';
+        } 
+        // if($request->hasFile('song')) {
+
+        //     $mp3File = $request->file('song');
+        //     $name = time().$mp3File->getClientOriginalExtension();
+        //     $mp3File->move('storage', $name);
+        //     $songLink = time().$mp3File->getClientOriginalExtension();
+        // } 
+        else {
+            echo "Dont have mp3.<br/>";
+            echo '<a href = "/insert">Click Here</a> to go back.';
         }
-        echo "Dont have image.<br/>";
-        echo '<a href = "/insert">Click Here</a> to go back.';
      }
 
 }

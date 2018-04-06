@@ -63,7 +63,7 @@
 		<div class="container">
 			<div class="content">
 
-                <form action = "/create" method = "post">
+                <form action = "/create" method = "post" enctype="multipart/form-data">
                     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                     <table>
                         <!-- Title -->
@@ -84,13 +84,10 @@
                         <td><input type='text' name='txtDescr' /></td>
                         </tr>
 
+						<!-- Mp3 file -->
+
+
                         <!-- Song img -->
-
-                        <!-- <tr>
-                        <td>Select image to upload:</td>
-                        <td><input type="file" id="file" name="file" accept=".PNG,.GIF,.JPG"/></td>
-                        </tr> -->
-
                         <tr>
                             <td>Select image to upload:</td>
                             <td>                      
@@ -101,7 +98,6 @@
                                 ?>
                             </td>
                         </tr>
-
 
                         <tr>
                         <td colspan = '2'>

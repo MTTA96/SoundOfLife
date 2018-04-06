@@ -8,22 +8,28 @@
    </head>
    
    <body>
-      <table border = 1>
-         <tr>
-            <td>ID</td>
-            <td>Title</td>
-            <td>Artist</td>
-         </tr>
-         @foreach ($songs as $song)
-         <tr>
-            <td>{{ $song->SONG_ID }}</td>
-            <td>{{ $song->SONG_TITLE }}</td>
-            <td>{{ $song->ARTIST}}
-            <td><a href = 'delete/{{ $song->SONG_ID }}'>Delete</a></td>          
-            <td><a href = 'edit/{{ $song->SONG_ID }}'>Edit</a></td>
-         </tr>
-         @endforeach
-      </table>
+        <div class="container text-center">
+            <h3>Sản phẩm cửa hàng</h3><br>
+            <div class="row">
+            <?php
+                foreach($songs as $song){ 
+                ?>
+                <div class="col-sm-4">
+                    <a>
+                        <img src="<?php echo "storage/" .$song->SONG_IMGL_INK;?>" class="img-responsive" style="width:30%"/></a>
+                    <p class="text-danger"><?php echo $song->SONG_TITLE; ?></p>
+                    <p class="text-info"><?php echo $song->ARTIST; ?></p>
+                    <p class="text-danger">
+                        <button type="button" class="btn btn-primary"> Mua hàng </button>
+                    </p>
+                </div>
+                <?php } ?>
+            </div>
+        </div>
+
+
+
+      
    
    </body>
 </html>
