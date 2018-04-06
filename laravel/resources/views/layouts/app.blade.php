@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -50,12 +50,20 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{ route('info',[Auth::user()->name]) }}"
+                                     onclick="event.preventDefault();
+                                                   document.getElementById('info-form').submit();">
+                                      {{ __('Acount Info') }}
+                                  </a>
+                                  <form id="info-form" action="{{ route('info',[Auth::user()->name]) }}"style="display: none;">
+                                      @csrf
+                                  </form>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
