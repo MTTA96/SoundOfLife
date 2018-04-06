@@ -120,13 +120,13 @@
                 <button class="player__volume-up button button--small">Volume up</button>
               </div>
           </div>
-          <button class="player__play">Play</button>
+          <button class="player__play" id="btnPlay">Play</button>
           <button class="player__stop button button--large">Stop</button>
         </div>
         @yield('content')
     </body>
 </html>
-
+<script type="text/javascript" src="{{ URL::asset('js/soundmanager2.js') }}"></script>
 <script>
   function formatMilliseconds(milliseconds) {
     var hours = Math.floor(milliseconds / 3600000);
@@ -143,7 +143,7 @@
   }
 
   var player = {
-    btnPlay:  document.getElementById('.player__play'),
+    btnPlay:  document.getElementById('btnPlay'),
     btnStop: document.querySelector('.player__stop'),
     btnPrevious: document.querySelector('.player__previous'),
     btnNext: document.querySelector('.player__next'),
