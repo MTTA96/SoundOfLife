@@ -1,6 +1,9 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<?php
+    require_once("../entities/song.class.php");
+?>
+<html>
    
-@section('content') 
    <head>
       <title>Laravel</title>
       <link href = "https://fonts.googleapis.com/css?family=Lato:100" rel = "stylesheet" 
@@ -35,9 +38,38 @@
    
    <body>
       <div class = "container">
-         <div class = "content">
-            <div class = "title">Laravel 5</div>
-         </div>
+         
+        <div class = "content">
+            <div class = "title">Sound Of Life</div>
+        </div>
+
+        <li>
+            <a href = "song_list">Manage Songs</a>   
+        </li>
+
+        <li>
+            <a href="insert"> Add New Song</a>
+        </li><br>
+
+        <div class="row">
+            <?php
+                foreach($songs as $song){ 
+                ?>
+                <div class="col-sm-9">
+                    <a> <img src="<?php echo "storage/songIMG/" .$song->SONG_IMGL_INK;?>" class="img-responsive" style="width:10%"/></a>
+                    <p class="text-danger"><?php echo $song->SONG_TITLE; ?></p>
+                    <p class="text-info"><?php echo $song->ARTIST; ?></p>
+
+                    <!-- Song link for Trí -->
+                    <p class="text-info">Song link: <?php echo $song->SONG_LINK; ?></P>
+
+                    <p class="text-danger">
+                        <button type="button" class="btn btn-primary"> Play </button>
+                    </p>
+                </div>
+                <?php } ?>
+            </div>
       </div>
    </body>
-@endsection
+
+</html>

@@ -28,6 +28,8 @@ Route::get('ID/{id}',function($id){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'SongListController@index');
+>>>>>>> eb975329738d550b1e05f19c74ec808d57d889a2
 
 Route::get('/music', function(){
     return view('music');
@@ -35,3 +37,18 @@ Route::get('/music', function(){
 
 Route::get('/info/{name?}','Info@UserInfo')->name('info');
 Route::get('/info','info@UserList')->name('list')
+// View songs
+Route::get('song_list','SongListController@manageSongs');
+
+// Insert song
+Route::get('insert','SongInsertController@insertform');
+Route::post('create','SongInsertController@insert');
+
+//Update song
+Route::get('edit-song','SongListController@index');
+Route::get('edit/{id}','SongUpdateController@show');
+Route::post('edit/{id}','SongUpdateController@edit');
+
+//Delete song
+Route::get('delete/{id}','SongListController@destroy');
+>>>>>>> eb975329738d550b1e05f19c74ec808d57d889a2
