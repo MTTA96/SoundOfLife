@@ -25,7 +25,7 @@ class SongInsertController extends Controller
         return view('create_song');
      }
       
-     public function insert(Request $request, $userID){
+     public function insert(Request $request, $id){
 
         $songTitle = $request->input('song_title');
         $artist = $request->input('artist');
@@ -35,8 +35,8 @@ class SongInsertController extends Controller
         $likes = 0;
         $dislikes = 0;
         $descr = $request->input('txtDescr');
-        $uploader = $userID;
-        // $uploader = 1;
+        // $uploader = $userID;
+        $uploader = $id;
         $uploadDate = date("Y/m/d");
 
         // Check image file

@@ -63,7 +63,7 @@
 		<div class="container">
 			<div class="content">
 
-                <form action = "{{ route('create', [Auth:user()->id] }}" method = "post" enctype="multipart/form-data">
+                <form action = "/create/<?php echo Auth::user()->id; ?>" method = "post" enctype="multipart/form-data">
                     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                     <table>
                         <!-- Title -->
