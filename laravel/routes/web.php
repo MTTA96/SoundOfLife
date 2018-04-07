@@ -39,14 +39,14 @@ Route::get('/music', function(){
 
 
 Route::get('/info/{name?}','Info@UserInfo')->name('info');
-Route::get('/info','info@UserList')->name('list')
+Route::get('/info','info@UserList')->name('list');
 
 // View songs
 Route::get('song_list','SongListController@manageSongs');
 
 // Insert song
 Route::get('insert','SongInsertController@insertform');
-Route::post('create','SongInsertController@insert');
+Route::post('create/{id?}','SongInsertController@insert');
 
 //Update song
 Route::get('edit-song','SongListController@index');

@@ -78,7 +78,7 @@
                         <!-- Title -->
                         <tr>
                             <td>Song title</td>
-                            <td><input type='SONG_TITLE' name='SONG_TITLE' value = '<?php echo$songs[0]->SONG_TITLE; ?>'/></td>
+                            <td><input type='text' name='SONG_TITLE' value = '<?php echo$songs[0]->SONG_TITLE; ?>'/></td>
                         </tr>
 
                         <!-- Artist -->
@@ -91,17 +91,6 @@
                         <tr>
                           <td>Desc</td>
                           <td><input type='text' name='txtDescr' value = '<?php echo$songs[0]->DESCR; ?>'/></td>
-                        </tr>
-
-                        <!-- Mp3 file --> 
-                        <tr>
-                            <td>Select song to update:</td>
-                            <td>                      
-                                <?php
-                                    echo Form::open(array('url' => '/uploadfile','files'=>'true'));
-                                    echo Form::file('song');
-                                ?>
-                            </td>
                         </tr>
                                     
                         <!-- Song img -->
