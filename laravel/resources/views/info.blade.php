@@ -34,7 +34,7 @@
               <a  href="{{ route('infoedit',[Auth::user()->id]) }}">
                 <input type="submit" value="Edit account"/>
               </a>
-              <a class="btn btn-link" href="{{ route('password.request') }}">
+              <a class="btn btn-link" href="{{ route('changepass',[Auth::user()->id]) }}">
                   <input type="submit" value="Change password"/>
               </a>
               <a  href="/">
