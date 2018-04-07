@@ -39,7 +39,7 @@ Route::get('/music', function(){
 
 
 Route::get('/info/{name?}','Info@UserInfo')->name('info');
-Route::get('/info','info@UserList')->name('list')
+Route::get('/info','info@UserList')->name('list');
 
 // View songs
 Route::get('song_list','SongListController@manageSongs');

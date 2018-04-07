@@ -8,10 +8,13 @@
                 <div class="card-header">{{$user->name}}</div>
                 <div class="card-body">
                         <div class="email">
-                            {{$user->email}}
+                          <p><b>Email: {{$user->email}}</b></p>
                         </div>
                         <div class="question">
-                            {{$user->question}}
+                          <p><b>Question: {{$user->question}}</b></p>
+                        </div>
+                        <div class="descr">
+                          <p><b>Description: {{$user->descr}}</b></p>
                         </div>
                 </div>
               </div>
