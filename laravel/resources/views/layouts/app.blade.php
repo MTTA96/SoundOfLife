@@ -40,6 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
@@ -55,7 +56,7 @@
                                                    document.getElementById('info-form').submit();">
                                       {{ __('Acount Info') }}
                                   </a>
-                                  <form id="info-form" action="{{ route('info',[Auth::user()->name]) }}"style="display: none;">
+                                  <form id="info-form" action="{{ route('info',[Auth::user()->name]) }}" style="display: none;">
                                       @csrf
                                   </form>
 

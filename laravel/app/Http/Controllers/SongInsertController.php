@@ -35,8 +35,8 @@ class SongInsertController extends Controller
         $likes = 0;
         $dislikes = 0;
         $descr = $request->input('txtDescr');
-        // $uploader = $userID
-        $uploader = 1;
+        $uploader = $userID;
+        // $uploader = 1;
         $uploadDate = date("Y/m/d");
 
         // Check image file
