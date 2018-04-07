@@ -37,8 +37,12 @@ Route::get('/music', function(){
     return view('music');
  });
 
+//Account info
+Route::get('/info/{name}','Info@UserInfo')->name('info');
 
-Route::get('/info/{name?}','Info@UserInfo')->name('info');
+//Account edit
+Route::get('/infoedit/{id}','Info@UserEdit')->name('infoedit');
+Route::post('/infoedit/{id}','Info@Update');
 Route::get('/info','info@UserList')->name('list');
 
 // View songs

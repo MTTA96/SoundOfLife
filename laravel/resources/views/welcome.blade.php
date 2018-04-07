@@ -2,6 +2,9 @@
 <?php
     require_once("../entities/song.class.php");
 ?>
+@extends('layouts.app')
+
+@section('content')
 <html>
 
    <head>
@@ -36,44 +39,16 @@
    </head>
 
    <body>
-      <div class = "container">
-
-         <!-- Title -->
-        <div class = "content">
-            <div class = "title">Sound Of Life</div>
-        </div>
-
-        <!-- Login -->
+     <div class="container">
+       <div class="row justify-content-center">
+         <div class="col-md-8">
+           <div class="card">
+             <div class="card-header">
+               <b>Sound Of Life</b>
+             </div>
+             <div class="card-body">
         @guest
-            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-            @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{ route('info',[Auth::user()->name]) }}"
-                         onclick="event.preventDefault();
-                                       document.getElementById('info-form').submit();">
-                          {{ __('Acount Info') }}
-                      </a>
-                      <form id="info-form" action="{{ route('info',[Auth::user()->name]) }}"style="display: none;">
-                          @csrf
-                      </form>
-
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-            @endguest
+        @else
         <li>
             <a href = "song_list">Manage Songs</a>
         </li>
@@ -81,7 +56,8 @@
         <!-- Add song -->
         <li>
             <a href="insert"> Add New Song</a>
-        </li><br> 
+        </li><br>
+        @endguest
 
         <!-- Song list -->
         <div class="row">
@@ -89,12 +65,12 @@
                 foreach($songs as $song) {
                 ?>
                 <div class="col-sm-9">
-                    <a> <img src="<?php echo "storage/songIMG/" .$song->SONG_IMGL_INK;?>" class="img-responsive" style="width:10%"/></a>
+                    <a> <img src="storage/songIMG/<?php echo $song->SONG_IMGL_INK;?>" class="img-responsive" style="width:10%"/></a>
                     <p class="text-danger"><?php echo $song->SONG_TITLE; ?></p>
                     <p class="text-info"><?php echo $song->ARTIST; ?></p>
                     <p class="text-info">Song link: <?php echo $song->SONG_LINK; ?></P>
                     <p class="text-danger">
-                        <button id="btnPlay" type="btnPlay" class="btn btn-primary" onClick="playSong("<?php echo "storage/mp3/" .$song->SONG_LINK;?>")"> Play </button>
+                        <button id="btnPlay" type="btnPlay" class="btn btn-primary" onClick="playSong(storage/mp3/<?php echo $song->SONG_LINK;?>)"> Play </button>
                     </p>
                     <!-- Script -->
                     <script type="text/javascript" src="{{ URL::asset('js/soundmanager2.js') }}"></script>
@@ -162,7 +138,7 @@
                                 if (audio === null) {
                                 return;
                                 }
-                                
+
                                 if (audio.playState === 0 || audio.paused === true) {
                                 audio.play();
                                 this.classList.add('is-playing');
@@ -230,7 +206,7 @@
                                     player.btnStop.dispatchEvent(event);
                                 } else {
                                     audio.setPosition(position);
-                                    player.timeElapsed.textContent = formatMilliseconds(audio.position);   
+                                    player.timeElapsed.textContent = formatMilliseconds(audio.position);
                                 }
                             });
                         }
@@ -243,7 +219,11 @@
             </div>
         </div>
 
-    </div>     
+    </div>
+  </div>
+</div>
+</div>
     </body>
 
 </html>
+  @endsection

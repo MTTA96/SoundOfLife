@@ -24,7 +24,7 @@ class SongInsertController extends Controller
     public function insertform(){
         return view('create_song');
      }
-      
+
      public function insert(Request $request, $id){
 
         $songTitle = $request->input('song_title');
@@ -47,11 +47,10 @@ class SongInsertController extends Controller
             $file->move('storage/songIMG', $name);
             $songIMGLINK = time().$file->getClientOriginalExtension();
 
-        } 
+        }
 
-        // Check song 
-        if($request->hasFile('song')) {
-
+        // Check song
+        if($request->hasFile('song')){
             $mp3File = $request->file('song');
             $name = time().$mp3File->getClientOriginalExtension();
             $mp3File->move('storage/mp3', $name);
@@ -62,7 +61,7 @@ class SongInsertController extends Controller
 
             echo "Record inserted successfully.<br/>";
             echo '<a href = "/song_list">Click Here</a> to go back.';
-        } 
+        }
         else {
             echo "Dont have song.<br/>";
             echo '<a href = "/insert">Click Here</a> to go back.';

@@ -2,7 +2,7 @@
 
    <head>
       <title>Song Management | Add</title>
-		
+
 		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
 		<style>
@@ -58,7 +58,7 @@
 
 		</style>
    </head>
-   
+
    <body>
 		<div class="container">
 			<div class="content">
@@ -84,21 +84,21 @@
                         <td><input type='text' name='txtDescr' /></td>
                         </tr>
 
-						<!-- Mp3 file --> 
+						<!-- Mp3 file -->
                        <tr>
 							<td>Select song to upload:</td>
-								<td>                      
+								<td>
 									<?php
                                    		echo Form::open(array('url' => '/uploadfile','files'=>'true'));
 										echo Form::file('song');
 									?>
 							</td>
                         </tr>
-						
+
                         <!-- Song img -->
                         <tr>
                             <td>Select image to upload:</td>
-                            <td>                      
+                            <td>
                                 <?php
                                     echo Form::file('image');
 									echo Form::close();
@@ -118,11 +118,10 @@
                     <li>
                         <a href = "/">Home</a>
                     </li>
-                        
+
                 </form>
-   
+
             </div>
 		</div>
 	</body>
 </html>
-
