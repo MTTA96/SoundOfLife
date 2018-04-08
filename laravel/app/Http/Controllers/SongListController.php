@@ -31,7 +31,7 @@ class SongListController extends Controller
     public function destroy($id) {
         DB::delete('delete from song where SONG_ID = ?',[$id]);
         echo "Record deleted successfully.<br/>";
-        echo '<a href="/song_list">Click Here</a> to go back.';
+        echo '<a href="/">Click Here</a> to go back.';
      }
 
     /**

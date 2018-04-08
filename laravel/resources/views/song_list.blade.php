@@ -37,8 +37,8 @@
 				        <td>{{ $song->ARTIST}}
 				        <td>{{ $song->DESCR }}</td>
 				        <td><button type="button" class="btn btn-primary">Play </button></td>
-				        <td><a href = 'delete/{{ $song->SONG_ID }}'>Delete</a></td>          
-				        <td><a href = 'edit/{{ $song->SONG_ID }}'>Edit</a></td>
+				        <td><a href = '../delete/{{ $song->SONG_ID }}'>Delete</a></td>          
+				        <td><a href = '../edit/{{ $song->SONG_ID }}'>Edit</a></td>
 				    </tr>
 				    @endforeach
 				</table>

@@ -38,6 +38,6 @@ class SongUpdateController extends Controller
         } 
         DB::update('update song set SONG_TITLE = ?, ARTIST = ?, DESCR = ? where SONG_ID = ?',[$songTitle, $artist, $descr, $id]);
         echo "Record updated successfully.<br/>";
-        echo '<a href = "/song_list">Click Here</a> to go back.';
+        echo '<a href = "/">Click Here</a> to go back.';
      }
 }

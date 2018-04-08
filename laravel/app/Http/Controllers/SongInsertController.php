@@ -60,11 +60,11 @@ class SongInsertController extends Controller
             [$songTitle, $artist, $songIMGLINK, $songLink, $tags, $likes, $dislikes, $descr, $uploader, $uploadDate]);
 
             echo "Record inserted successfully.<br/>";
-            echo '<a href = "/song_list">Click Here</a> to go back.';
+            echo '<a href = "../">Click Here</a> to go back.';
         }
         else {
             echo "Dont have song.<br/>";
-            echo '<a href = "/insert">Click Here</a> to go back.';
+            echo '<a href = "../insert">Click Here</a> to go back.';
         }
      }
 
