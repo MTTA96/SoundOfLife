@@ -63,7 +63,7 @@
               <form id="info-form" action="{{ route('info',[Auth::user()->name]) }}" style="display: none;">
                 @csrf
               </form>
-              <a class="dropdown-item" href = "song_list">Manage Songs</a>
+              <a class="dropdown-item" href = "song_list/<?php echo Auth::user()->id; ?>">Manage Songs</a>
               <a class="dropdown-item"href="insert"> Add New Song</a>
               <a class="dropdown-item" href="{{ route('logout') }}"
               onclick="event.preventDefault();

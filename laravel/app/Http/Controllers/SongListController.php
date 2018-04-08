@@ -23,8 +23,8 @@ class SongListController extends Controller
         return view('welcome',['songs'=>$songs]);
     }
 
-    public function manageSongs(lain $lain) {
-        $songs = DB::select('select * from song');
+    public function manageSongs($id) {
+        $songs = DB::select('select * from song where uploader = ?', [$id]);
         return view('song_list',['songs'=>$songs]);
     }
 
