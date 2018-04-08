@@ -6,7 +6,14 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
+          <img src="/storage/Avatar/{{ $user->avatar_img }}" style="width:50px; height:50px; float:left; border-radius:50%; margin-right:25px;">
           <b>{{$user->name}}</b>
+          <form enctype="multipart/form-data" action="/info" method="POST">
+                <label>Update Profile Image</label>
+                <input type="file" name="avatar">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="submit" class="pull-right btn btn-sm btn-primary">
+            </form>
         </div>
         <div class="card-body">
           <div class="email">

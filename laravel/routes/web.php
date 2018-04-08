@@ -39,6 +39,7 @@ Route::get('/music', function(){
 
 //Account info (DONE)
 Route::get('/info/{id}','Info@UserInfo')->name('info');
+Route::post('/info','Info@UpdateAvatar');
 
 //Account edit (DONE -- ERRORS NOT SHOWING)
 Route::get('/infoedit/{id}','Info@UserEdit')->name('infoedit');

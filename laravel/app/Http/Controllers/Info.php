@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class Info extends Controller
 {
@@ -24,6 +25,19 @@ class Info extends Controller
   {
     $user = User::where('name', $id)->first();
     return view('info',['user'=>$user]);
+  }
+
+  public function UpdateAvatar(Request $request){
+    if($request->hasFile('avatar')){
+      $avatar = $request->file('avatar');
+      $filename = time() . '.' . $avatar->getClientOriginalExtension();
+      Image::make($avatar)->resize(50, 50)->save( public_path('/storage/Avatar/' . $filename ) );
+
+      $user = Auth::user();
+      $user->avatar_img = $filename;
+      $user->save();
+    }
+      return view('info', array('user' => Auth::user()) );
   }
 
   //User list (NOT DONE)
