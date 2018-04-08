@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\config",
+    "\\laravel",
+    "\\laravel\\resources",
+    "\\laravel\\resources\\views",
+    "\\laravel\\resources\\views\\layouts"
+  ],
+  "SelectedNode": "\\laravel\\resources\\views\\create_song.blade.php",
+  "PreviewInSolutionExplorer": false
+}

@@ -37,12 +37,18 @@ Route::get('/music', function(){
     return view('music');
  });
 
-//Account info
-Route::get('/info/{name}','Info@UserInfo')->name('info');
+//Account info (DONE)
+Route::get('/info/{id}','Info@UserInfo')->name('info');
 
-//Account edit
+//Account edit (DONE -- ERRORS NOT SHOWING)
 Route::get('/infoedit/{id}','Info@UserEdit')->name('infoedit');
 Route::post('/infoedit/{id}','Info@Update');
+
+//Change password (BUSTED)
+Route::get('/changepass/{id}','Info@ChangePass')->name('changepass');
+Route::post('/changepass/{id}','Info@PassChange');
+
+//User list (NOT DONE)
 Route::get('/info','info@UserList')->name('list');
 
 // View songs

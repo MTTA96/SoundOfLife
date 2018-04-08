@@ -39,26 +39,17 @@
    </head>
 
    <body>
+
      <div class="container">
        <div class="row justify-content-center">
-         <div class="col-md-8">
+         <div>
            <div class="card">
              <div class="card-header">
-               <b>Sound Of Life</b>
+               <b>SOUND</b>
              </div>
              <div class="card-body">
-        @guest
-        @else
-        <li>
-            <a href = "song_list">Manage Songs</a>
-        </li>
 
-        <!-- Add song -->
-        <li>
-            <a href="insert"> Add New Song</a>
-        </li><br>
-        @endguest
-
+			 <p> Those are the latest hit we have</p>
         <!-- Song list -->
         <div class="row">
             <?php

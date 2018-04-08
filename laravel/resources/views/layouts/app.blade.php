@@ -41,15 +41,18 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
 
+                        <!-- If user is havent log on -->
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <!-- If user is log on -->
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
+                                <!-- Still dont fully understand this part -->
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                   <a class="dropdown-item" href="{{ route('info',[Auth::user()->name]) }}"
                                      onclick="event.preventDefault();
@@ -59,7 +62,8 @@
                                   <form id="info-form" action="{{ route('info',[Auth::user()->name]) }}" style="display: none;">
                                       @csrf
                                   </form>
-
+								  <a class="dropdown-item" href = "song_list">Manage Songs</a>
+								  <a class="dropdown-item"href="insert"> Add New Song</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -68,6 +72,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+									
                                 </div>
                             </li>
                         @endguest
