@@ -35,6 +35,39 @@
          .title {
             font-size: 96px;
          }
+
+        .button--small
+        {
+            width: 19px;
+            height: 19px;
+        }
+
+        .button--large
+        {
+            width: 48px;
+            height: 48px;
+        }
+        .player__play.is-playing
+        {
+            background-image: url("http://i57.tinypic.com/idyhd2.png");
+        }
+
+        .player__stop
+        {
+            background-image: url("http://i61.tinypic.com/35mehdz.png");
+        }
+
+        .player__previous
+        {
+            background-image: url("http://i60.tinypic.com/sdihc5.png");
+        }
+
+        .player__next
+        {
+            background-image: url("http://i57.tinypic.com/2s1nm77.png");
+        }
+
+
       </style>
    </head>
 
@@ -50,7 +83,7 @@
              <div class="card-body">
 
 			 <p> Those are the latest hit we have</p>
-        
+
         <!-- Song list -->
         <script type="text/javascript" src="{{ URL::asset('js/soundmanager2.js') }}"></script>
 
@@ -64,28 +97,28 @@
                     var seconds = Math.floor(milliseconds / 1000);
                     milliseconds = Math.floor(milliseconds % 1000);
 
-                    return (hours > 0 ? hours : '0') + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ':' + (milliseconds < 100 ? '0' : '') + (milliseconds < 10 ? '0' : '') + milliseconds;
+                    return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
                 }
 
-                function playAudio(clicked_id, link){
-                    var temp = link;
-                                    
+                function playAudio(clicked_id, link, clicked_stop, timeElapsed, timeTotal, prev, next){
+                    var temp = clicked_stop;
+
                     var player = {
                         btnPlay:  document.getElementById(clicked_id),
-                        btnStop: document.querySelector('.player__stop'),
-                        btnPrevious: document.querySelector('.player__previous'),
-                        btnNext: document.querySelector('.player__next'),
+                        btnStop: document.getElementById(clicked_stop),
+                        btnPrevious: document.getElementById(prev),
+                        btnNext: document.getElementById(next),
                         btnVolumeDown: document.querySelector('.player__volume-down'),
                         btnVolumeUp: document.querySelector('.player__volume-up'),
-                        timeElapsed: document.querySelector('.player__time-elapsed'),
-                        timeTotal: document.querySelector('.player__time-total'),
+                        timeElapsed: document.getElementById(timeElapsed),
+                        timeTotal: document.getElementById(timeTotal),
                         volume: document.querySelector('.player__volume-info')
                     };
-                                
+
                     var audio = null;
 
                     soundManager.setup({
-                                        
+
                         useFastPolling: true,
                         useHighPerformance: true,
                         onready: function() {
@@ -118,10 +151,54 @@
                         }
                     });
 
+                    player.btnPrevious.addEventListener('click', function() {
+   if (audio === null) {
+     return;
+   }
+
+   var position = audio.position - 30000 < 0 ? 0 : audio.position - 30000;
+   audio.setPosition(position);
+   player.timeElapsed.textContent = formatMilliseconds(audio.position);
+});
+
+player.btnNext.addEventListener('click', function() {
+   if (audio === null) {
+     return;
+   }
+
+   var position = audio.position + 30000 > audio.duration ? audio.duration : audio.position + 30000;
+   if (position === audio.duration) {
+      var event;
+      try {
+         // Internet Explorer does not like this statement
+         event = new Event('click');
+      } catch (ex) {
+         event = document.createEvent('MouseEvent');
+         event.initEvent('click', true, false);
+      }
+      player.btnStop.dispatchEvent(event);
+   } else {
+      audio.setPosition(position);
+      player.timeElapsed.textContent = formatMilliseconds(audio.position);
+   }
+});
+
+                    player.btnStop.addEventListener('click', function() {
+                        if (audio === null) {
+                            return;
+                        }
+
+                        audio.stop();
+                        document.getElementById(timeElapsed).textContent = formatMilliseconds(0);
+                        player.btnPlay.classList.remove('is-playing');
+
+
+                    });
+
                     if (audio === null) {
                         return;
                     }
-                                    
+
                     if (audio.playState === 0 || audio.paused === true) {
                         audio.play();
                         this.classList.add('is-playing');
@@ -130,29 +207,52 @@
                         this.classList.remove('is-playing');
                     }
 
-                }               
+
+
+                }
             </script>
-            
+
             <?php
                     $listCount = -1;
                     $arraySong = array();
                     foreach($songs as $song) {
                         $listCount = $listCount + 1;
                         array_push($arraySong, "storage/mp3/" .$song->SONG_LINK);
-                        
+
                     ?>
-                    <div class="col-sm-9">
-                        <a> <img src="<?php echo "storage/songIMG/" .$song->SONG_IMGL_INK;?>" class="img-responsive" style="width:10%"/></a>
-                        <p class="text-danger"><?php echo $song->SONG_TITLE; ?></p>
-                        <p class="text-info"><?php echo $song->ARTIST; ?></p>
 
-                        <p class="text-danger">
-                            <div>
-                                <button id=<?php echo $listCount; ?> class="player__play button button--large" onClick="playAudio(this.id,'<?php echo $arraySong[$listCount];?>')" >Play</button>
+
+                    <div style="height:100%; width:100%; border-radius: 25px; background:#f3f2f2; padding-left:15px; padding-right:15px; margin-left:15px; margin-right:25px; margin-bottom:20px">
+                        <div style="float: left; width:15%; height:100%; overflow:hidden; padding-left:20px; padding-top:15px;">
+                            <a> <img src="<?php echo "storage/songIMG/" .$song->SONG_IMGL_INK;?>" class="img-responsive" style="float:top; width:140px; height:140px; border-radius: 15px;"/></a>
+
+                            <p class="text-danger" style="float:top; width:100%; height:40%">
+                                <div>
+                                    <span  id=<?php echo $listCount; ?> onClick ="playAudio(this.id,'<?php echo $arraySong[$listCount];?>','<?php echo $listCount."stop";?>','<?php echo $listCount."timeElapsed"; ?>','<?php echo $listCount."timeTotal"; ?>','<?php echo $listCount."prev"; ?>','<?php echo $listCount."next"; ?>')" ><img style="width:50px; height:50px" src="http://i67.tinypic.com/k2oilw.png"></span>
+                                    <span id=<?php echo $listCount."stop"; ?>><img src="http://i68.tinypic.com/301kbqw.png"></span>
+                                </div>
+                            </p>
+                        </div>
+
+                        <div class="col-sm-12" style="float: left; width:60%; height:100%; overflow:hidden; padding-top:10px">
+
+                            <span style="font-size: 200%;" class="text-danger"><?php echo $song->SONG_TITLE; ?> - </span>
+                            <span style="font-size: 150%;" class="text-info"><?php echo $song->ARTIST; ?></span>
+                            </br>
+                            <div style="margin-top:20px">
+                                <span style="color:blue; font-size: 130%;" id=<?php echo $listCount."timeElapsed"; ?> class="font_time">-</span>/
+                                <span style="color:blue; font-size: 130%;;" id=<?php echo $listCount."timeTotal"; ?> class="font_time">-</span>
                             </div>
-                        </p>
 
+                            <span id="<?php echo $listCount."prev"; ?>" ><img src="http://i63.tinypic.com/14nd2r9.png"></span>
+                            <span id="<?php echo $listCount."next"; ?>"><img src="http://i67.tinypic.com/21ovedt.png"></span>
+
+                        </div>
+
+                        </br>
+                        </br>
                     </div>
+                    
             <?php } ?>
         </div>
 

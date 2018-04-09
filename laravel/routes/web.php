@@ -53,7 +53,7 @@ Route::post('/changepass/{id}','Info@PassChange');
 Route::get('/info','info@UserList')->name('list');
 
 // View songs
-Route::get('song_list/{id}','SongListController@manageSongs');
+Route::get('song_list/{id}','SongListController@manageSongs')->name('songlist');
 
 // Insert song
 Route::get('insert','SongInsertController@insertform')->name('insert');

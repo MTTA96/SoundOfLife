@@ -31,7 +31,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
           <!-- Left Side Of Navbar -->
           <!--<ul class="navbar-nav mr-auto">
           <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -63,7 +63,7 @@
               <form id="info-form" action="{{ route('info',[Auth::user()->name]) }}" style="display: none;">
                 @csrf
               </form>
-              <a class="dropdown-item" href = "song_list/<?php echo Auth::user()->id; ?>">Manage Songs</a>
+              <a class="dropdown-item" href = "{{ route('songlist',[Auth::user()->id]) }}">Manage Songs</a>
               <a class="dropdown-item"href="{{ route('insert') }}"> Add New Song</a>
               <a class="dropdown-item" href="{{ route('logout') }}"
               onclick="event.preventDefault();

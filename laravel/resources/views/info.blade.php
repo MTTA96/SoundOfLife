@@ -39,13 +39,13 @@
           </div>
             <div>
               <a  href="{{ route('infoedit',[Auth::user()->id]) }}">
-                <input type="submit" value="Edit account"/>
+                <input class="btn btn-success" type="submit" value="Edit account"/>
               </a>
-              <a class="btn btn-link" href="{{ route('changepass',[Auth::user()->id]) }}">
-                  <input type="submit" value="Change password"/>
+              <a href="{{ route('changepass',[Auth::user()->id]) }}">
+                  <input class="btn btn-danger" type="submit" value="Change password"/>
               </a>
               <a  href="/">
-                <input type="submit" value="Home"/>
+                <input class="btn btn-primary" type="submit" value="Home"/>
               </a>
             </div>
           </div>
