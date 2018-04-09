@@ -56,7 +56,7 @@ Route::get('/info','info@UserList')->name('list');
 Route::get('song_list/{id}','SongListController@manageSongs');
 
 // Insert song
-Route::get('insert','SongInsertController@insertform');
+Route::get('insert','SongInsertController@insertform')->name('insert');
 Route::post('create/{id}','SongInsertController@insert');
 
 //Update song

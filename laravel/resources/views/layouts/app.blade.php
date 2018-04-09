@@ -64,7 +64,7 @@
                 @csrf
               </form>
               <a class="dropdown-item" href = "song_list/<?php echo Auth::user()->id; ?>">Manage Songs</a>
-              <a class="dropdown-item"href="insert"> Add New Song</a>
+              <a class="dropdown-item"href="{{ route('insert') }}"> Add New Song</a>
               <a class="dropdown-item" href="{{ route('logout') }}"
               onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
